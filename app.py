@@ -58,12 +58,20 @@ mse = mean_squared_error(Y_test, Y_pred)
 rmse = np.sqrt(mse)
 mae = mean_absolute_error(Y_test, Y_pred)
 
-# Calculate percentage error
-mean_price = Y_test['price'].mean()
-mape = np.mean(np.abs((Y_test - Y_pred) / Y_test)) * 100
+
 
 print("\nModel Performance Metrics:")
 print(f"R² Score = {r2:.4f}")  # How well the model fits (0 to 1, higher is better)
 print(f"Root Mean Squared Error = {rmse:.2f}")  # Average error in same units as price
 print(f"Mean Absolute Error = {mae:.2f}")  # Average absolute error in same units as price
-print(f"Mean Absolute Percentage Error = {mape[0]:.2f}%")  # Average percentage error
+
+#improving model
+corr_matrix= df_processed.corr()
+print(corr_matrix)
+plt.figure(figsize=(10,10))
+sns.heatmap(corr_matrix,annot=True)
+plt.title('correlation matrix')
+plt.tight_layout()
+plt.savefig('correlationmatrix.jpg',dpi=300,bbox_inches='tight')
+plt.show()
+
